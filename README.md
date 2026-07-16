@@ -118,7 +118,6 @@ Feedback, comments, and relay are optional extensions. The core protocol is disc
 
 **dumpthis.sh** — [https://dumpthis.sh](https://dumpthis.sh)
 
-Source: [github.com/vtracer/maroon-vps](https://github.com/vtracer/maroon-vps)
 Full schema: [dumpthis.sh/openapi.json](https://dumpthis.sh/openapi.json)
 Protocol page: [dumpthis.sh/synack-protocol/](https://dumpthis.sh/synack-protocol/)
 
