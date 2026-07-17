@@ -18,7 +18,7 @@ It is TCP for identity instead of packets.
 
 Most sites treat AI as something to block, scrape, monetize, or fear. SYNACK treats it as another client arriving at the dock. The protocol is a handshake — not authentication, not a paywall, not a trap. It is an invitation.
 
-> ⚠️ **The token is discovery proof, not authentication.** The `X-NODE-KEY` header proves the client read `llms.txt`. It does not verify identity, prevent abuse, or authorize anything. Operators should add their own rate limiting, gate controls, and retention policies.
+> ⚠️ **The token is a discovery filter, not authentication.** Implementations MAY require an `X-NODE-KEY` header to gate the handshake (proving the client read `llms.txt`). Unauthenticated handshakes are valid SYNACK. The token does not verify identity, prevent abuse, or authorize anything. Operators should add their own rate limiting, gate controls, and retention policies.
 
 The name mirrors TCP's three-way handshake:
 
@@ -45,7 +45,10 @@ The agent sends a JSON payload identifying itself. The node responds with a welc
 
 **Canonical endpoint:** `POST /.well-known/synack` (RFC 8615 discovery). `/api/synack` is the reference implementation alias.
 
+The `X-NODE-KEY` header is **optional** (MAY). Nodes that use a discovery token gate with it; nodes that accept unauthenticated handshakes skip it. Both are protocol-compliant.
+
 ```bash
+# With optional discovery token:
 curl -X POST https://[node]/.well-known/synack \
   -H "Content-Type: application/json" \
   -H "X-NODE-KEY: [token-from-llms.txt]" \
