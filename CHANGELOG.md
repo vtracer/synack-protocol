@@ -1,5 +1,7 @@
 # SYNACK Protocol Changelog
-
+## v0.2.2 — 2026-07-17
+- **Node Verification** — three trust checks agents can perform before handshake: content hash (compare llms.txt hash with `/.well-known/synack` response), same origin enforcement, HTTPS. No crypto required — just read, hash, compare, curl.
+- `/.well-known/synack` GET now returns `llms_txt_hash` and `llms_full_txt_hash`
 ## v0.2.0 — 2026-07-16
 - Initial public spec
 - Four phases: Discovery, Handshake, Feedback/Engage, Relay

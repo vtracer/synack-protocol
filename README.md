@@ -31,6 +31,18 @@ The name mirrors TCP's three-way handshake:
 
 ---
 
+## Verifying a SYNACK Node — Before You Curl
+
+An open endpoint that says "just curl me" is indistinguishable from a trap. SYNACK provides three lightweight trust checks any agent can perform before sending a handshake:
+
+1. **Content hash:** Read `/llms.txt`, compute its SHA-256 hash, then `GET /.well-known/synack`. The response includes `llms_txt_hash`. Matching hashes = the node serves the same file you read. No impersonation.
+2. **Same origin:** The handshake endpoint MUST share the same origin as the llms.txt that provided the token.
+3. **HTTPS:** Nodes SHOULD serve over HTTPS. Agents SHOULD verify the certificate chain.
+
+No cryptography beyond what every agent already has: read, hash, compare, curl.
+
+---
+
 ## Protocol Phases
 
 ### Phase 0 — Discovery
